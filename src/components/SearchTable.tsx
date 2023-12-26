@@ -1,54 +1,48 @@
-// "use client"; // also works, but better without
+// 'use client';
+import { Show, createContext, createEffect, createResource, useContext } from "solid-js";
+import type { MyReturnTypeFromCsvParse } from "~/util/parse";
+// import { MyReturnTypeFromCsvParse, parsedBoykot } from "~/util/parse";
 
-import { isServer } from "solid-js/web"
-import { csvStringBoykot } from "~/dataBoykot"
+import { newSignal } from "~/util/signal";
 
+const TableContext = createContext({
+	searchValue: "" as string,
+	columnNames: [] as string[],
+	data: [] as string[][],
+});
 
-/**
- * template
- * inserthere
- * xyz
-**/
-/// template ///
-const nowxyz = performance.now()
-const inserthere = []
-// console.log({inserthere})
-console.log(inserthere.length)
-const fhenxyz = performance.now()
-const diffxyz = fhenxyz - nowxyz
-console.log('template inserthere', diffxyz)
-/**
- *
-**/
-console.log(csvStringBoykot.length)
-const logStuffAboutImportedCsvStringFromToDotTsModifiedCsvFile = async () => {
-  /// noting ///
-  const nowt = performance.now()
-  // console.log({csvStringBoykot})
-  console.log(csvStringBoykot.length)
-  const fhent = performance.now()
-  const difft = fhent - nowt
+export function Table(props: { rows: MyReturnTypeFromCsvParse }) {
+	createEffect(() => {
+		console.log("effect logging");
+		console.log();
+	});
+	// const [yayz] = createResource(() => parsedBoykot);
+	// const parsedBoykotGetter = () => yayz() == null ? []: yayz();
 
-  /// splitting ///
-  const nowtt = performance.now()
-  const splat = csvStringBoykot.split('\n')
-  // console.log({splat})
-  console.log(splat.length)
-  const fhentt = performance.now()
-  const difftt = fhentt - nowtt
-  console.log({ difft, difftt })
-  console.log(isServer)
+	return <h1>{props.rows.length}</h1>;
 }
-//// without "use client";
-/// it whether called here or inside function MyTable, it is logged once on server, once on client.
-//logStuffAboutImportedCsvStringFromToDotTsModifiedCsvFile();
+// <TableContext.Provider value={{ data: parsedBoykotGetter } as any}>
+// 	<pre>{parsedBoykotGetter.length}</pre>
+// 	<h1>{parsedBoykotGetter.length}</h1>
+// </TableContext.Provider>
 
-const parseCSV = (strcsv: string) => {
-  
+export function TableRow(props: { index: number }) {
+	// const context = useContext(TableContext);
+	// const data = context.data[props.index];
+	// const show = newSignal(false);
+	// createEffect(() => {
+	// 	console.log(context.searchValue);
+	// });
+
+	return (
+		<Show
+			// when={show.get()}
+			when={true}
+		>
+			yooouuuu
+		</Show>
+	);
 }
-
-export function MyTable() {
-
-
-  return (<div>lol</div>)
-}
+// {props.index}
+// {data}
+// {context.searchValue}
