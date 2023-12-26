@@ -1,6 +1,7 @@
 import { Title } from "@solidjs/meta";
 import { clientOnly } from "@solidjs/start";
 import Counter from "~/components/Counter";
+import { MyTable } from "~/components/SearchTable";
 const BreaksOnServer = clientOnly(() => import("~/components/BreaksOnServer"));
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
       <Title>Hello World</Title>
       <h1>Hello world!</h1>
       <Counter />
+      <MyTable />
       <BreaksOnServer />
       <p>
         Visit{" "}

@@ -4,4 +4,5 @@ export default defineConfig({
   start: {
     middleware: "./src/middleware.ts",
   },
+  assetsInclude: ['**/*.csv']
 });
