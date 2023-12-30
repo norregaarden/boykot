@@ -1,7 +1,7 @@
 // 'use server';
 import { cache } from "@solidjs/router";
 import { parse } from "csv-parse/sync";
-import { csvStringBoykot } from "~/dataBoykot";
+import { csvStringBoykot } from "~/dataBoykot2";
 
 type PleaseUseTheseSettingsThankYouForCsvParseSync = {
 	columns: true;
@@ -24,16 +24,15 @@ const soThisBecomesByParseFunction = (strcsv: string): MyReturnTypeFromCsvParse 
 		`all rows had`,
 		Object.keys(
 			records.reduce((acc, reco, i) => {
-				const acckeys = Object.keys(acc);
 				const keys = Object.keys(reco);
-				const diff = keys.filter((k) => !acckeys.includes(k));
-				const result = diff.length ? `error row ${i} has key ${diff[0]}` : acc;
-				if (typeof result == "string" && result.startsWith("error")) {
-					console.error(result);
-					console.log(result);
-				}
-				return acc;
-			}),
+				const diff = keys.filter((k) => !acc.includes(k));
+				// const result = diff.length ? `error row ${i} has key ${diff[0]}` : acc;
+				// if (typeof result == "string" && result.startsWith("error")) {
+				// console.error(result);
+				// console.log(result);
+				// }
+				return [...acc, ...diff];
+			}, []),
 		),
 	);
 	return records;
