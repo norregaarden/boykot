@@ -1,6 +1,7 @@
 // 'use server';
 import { cache } from "@solidjs/router";
 import { parse } from "csv-parse/sync";
+import { alternativerCsvStr } from "~/Boykot_Alternativer";
 import { csvStringBoykot } from "~/dataBoykot2";
 
 type PleaseUseTheseSettingsThankYouForCsvParseSync = {
@@ -76,4 +77,9 @@ export const parseCSVwithLogging = (strcsv: string = csvStringBoykot) => {
 export const cachedcsv = cache(async () => {
 	"use server";
 	return parseCSVwithLogging();
+}, "mykey");
+
+export const cachedcsvAlt = cache(async () => {
+	"use server";
+	return parseCSVwithLogging(alternativerCsvStr);
 }, "mykey");
